@@ -21,7 +21,15 @@ module.exports = {
     },{
       test: /\.s?css$/,
       loaders: ['style-loader', 'css-loader', 'sass-loader']
-    }]
+    },{
+          loader: 'json-loader',
+          test: /\.json$/
+        } ]
+  },
+  node: {
+      fs: 'empty',
+      module: 'empty',
+      net: 'empty'
   },
   plugins: [
   ],

@@ -50,6 +50,16 @@ html,body{
   }
   #console, #output{
     color : white;
+    height : 100vh;
+  }
+  #output iframe{
+    border : none;
+  }
+  &--headers{
+    display : flex;
+    > * {
+      flex : 1;
+    }
   }
 }
 
