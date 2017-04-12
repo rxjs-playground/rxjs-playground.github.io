@@ -5,7 +5,7 @@ import ConsoleOutput from './consoleOutput';
 import Output, {CONSOLE_EVENT} from './output';
 import HTMLPane from './html';
 import queryString from 'query-string';
-
+import {Observable} from 'rxjs/Observable';
 
 
 function compile(source) {
@@ -50,6 +50,7 @@ export default class Playground extends Component{
       source : js || "",
       output : compile(js),
       html : html || "",
+      show : true
     }
   }
 
@@ -95,21 +96,40 @@ export default class Playground extends Component{
     this.outputRef.run();
   }
 
+  stop = () => {
+    Observable.of(false).concat(Observable.interval(100).first().map(e=>true)).subscribe(val => {
+      this.setState(()=>{
+        return {
+          show : val
+        }
+      })
+    });
+  }
+
   render(){
+    const {show} = this.state;
+    if(!show){
+      return null;
+    }
     return [
-      [
-        <div id="playground--headers">
-            <h3>Javascript</h3>
-            <h3>HTML</h3>
-            <h3>Console  <button onClick={this.run}>Run</button> <button onClick={this.clearConsole}>Clear</button></h3>
-            <h3>Output </h3>
-        </div>
-      ],
       <div id="playground">
-        <Editor/>
-        <HTMLPane/>
-        <ConsoleOutput ref={n => this.consoleRef = n}/>
-        <Output ref={n => this.outputRef = n}/>
+        <div className="playground-column">
+          <div className="playground-row">
+            <Editor/>
+            <HTMLPane/>
+            </div>
+        </div>
+        <div className="playground-column">
+          <p><button onClick={this.run}>Run</button> <button onClick={this.clearConsole}>Clear</button> <button onClick={this.stop}>Stop</button></p>
+          <div className="playground-outputs">
+            <div className="playground-column">
+              <ConsoleOutput ref={n => this.consoleRef = n}/>
+            </div>
+            <div className="playground-column">
+              <Output ref={n => this.outputRef = n}/>
+            </div>
+          </div>
+        </div>
       </div>
     ]
   }

@@ -33,6 +33,7 @@ export default class HTML extends Component{
   render(){
 
     return <div id="html">
+    <h3>Html</h3>
       <div id="htmleditor-container">
         <textarea id="htmlinput" defaultValue={this.context.html}  onKeyDown={this.handleKeydown} ref={n => this.textarea = n}>
         </textarea>

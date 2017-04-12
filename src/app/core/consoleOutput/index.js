@@ -16,13 +16,17 @@ export default class Console extends Component{
 
   }
   componentDidMount(){
-    Observable.fromEvent(document, CONSOLE_EVENT).subscribe(e =>  {
+    this.subscription = Observable.fromEvent(document, CONSOLE_EVENT).subscribe(e =>  {
       this.consoleAppend(JSON.stringify(e.detail.message,null,4));
     });
+  }
+  componentWillUnmount(){
+    this.subscription.unsubscribe();
   }
   clear = () => this.setState({consoleOutputs : []})
   render(){
     return <div id="console">
+      <h3>Console</h3>
       <div>
         {this.state.consoleOutputs.map((p,index)=><pre key={index}>{p}</pre>)}
       </div>

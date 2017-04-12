@@ -45,12 +45,22 @@ html,body{
 
 #playground{
   display : flex;
-  > div {
+  .playground-column {
+    width: 50%;
+    word-break: break-all;
+    overflow: hidden;
+  }
+  .playground-outputs{
+    display : flex;
+  }
+  .playground-row{
+    display: flex;
     flex : 1;
+    flex-direction: column;
   }
   #console, #output{
     color : white;
-    height : 100vh;
+    width : 50%;
   }
   #output iframe{
     border : none;
@@ -58,12 +68,7 @@ html,body{
   #console ul{
     list-style: none;
   }
-  &--headers{
-    display : flex;
-    > * {
-      flex : 1;
-    }
-  }
+
 }
 
 

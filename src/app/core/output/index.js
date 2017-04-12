@@ -67,9 +67,12 @@ export default class Output extends Component{
   }
   render(){
     return <div id="output">
+      <h3>Output</h3>
+      <div>
       <iframe ref={n => this.iframe = n}>
 
       </iframe>
+      </div>
     </div>
   }
 }

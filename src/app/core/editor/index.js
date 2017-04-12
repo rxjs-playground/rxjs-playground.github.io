@@ -34,6 +34,7 @@ export default class Editor extends Component{
   }
   render(){
     return <div id="editor">
+      <h3>Javascript</h3>
       <div>
       <textarea id="editorinput" onKeyDown={this.handleKeydown} defaultValue={this.context.source} ref={n => this.textarea = n}>
       </textarea></div>
