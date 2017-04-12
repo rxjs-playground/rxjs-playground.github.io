@@ -10,6 +10,7 @@ export default class Editor extends Component{
   }
 
   componentDidMount(){
+    console.log(this.textarea);
     const input = Codemirror.fromTextArea(this.textarea, {
        lineNumbers: true,
        mode: {
@@ -23,20 +24,24 @@ export default class Editor extends Component{
             "Tab": "autocomplete"
         },
         autoCloseBrackets: true,
-        historyEventDelay: 2000,
     });
-    Observable.fromEvent(input,"change").debounceTime(1000)
+    this.subscription = Observable.fromEvent(input,"change").debounceTime(1000)
           .map(e=>input.getValue())
           .subscribe(source => this.context.setSource(source));
   }
-  handleKeydown=(e)=>{
-    console.log(e);
+  componentWillUnmount(){
+    this.subscription.unsubscribe();
   }
+  shouldComponentUpdate(){
+    return false;
+  }
+  
   render(){
+    console.log("render");
     return <div id="editor">
       <h3>Javascript</h3>
       <div>
-      <textarea id="editorinput" onKeyDown={this.handleKeydown} defaultValue={this.context.source} ref={n => this.textarea = n}>
+      <textarea id="editorinput"  defaultValue={this.context.source} ref={n => this.textarea = n}>
       </textarea></div>
     </div>
   }

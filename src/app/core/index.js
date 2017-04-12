@@ -24,9 +24,13 @@ function compile(source) {
         const transformedCode = transformed.code;
         return transformedCode;
     } catch (err) {
-        console.log(err.message.replace(/(?=\d).*(?=\|)/g, function(a) {
-            return Number(a.trim()) - 1;
-        }));
+
+        var event = new CustomEvent(CONSOLE_EVENT, { detail : {
+          message : err.message.replace(/(?=\d).*(?=\|)/g, function(a) {
+              return Number(a.trim()) - 1;
+          })
+        }});
+        parent.window.document.dispatchEvent(event)
         return source;
     }
 };

@@ -84,14 +84,5 @@ html,body{
 }
 
 
-.CodeMirror{
-  background : transparent !important;
-  * {
-    background : transparent !important;
-  }
-  &-gutters{
-    border : none !important;
-  }
-}
 
 @import "repl.scss";
