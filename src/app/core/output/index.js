@@ -55,7 +55,15 @@ export default class Output extends Component{
       };
       ${this.context.output}
       `);
-    frameWindow.eval(exp)
+     try{
+       frameWindow.eval(exp)
+     }catch(err){
+       document.dispatchEvent(new CustomEvent(CONSOLE_EVENT,{
+         detail : {
+           message : err.toString()
+         }
+       }))
+     }
   }
   render(){
     return <div id="output">
