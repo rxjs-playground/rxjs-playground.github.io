@@ -25,6 +25,11 @@ export default class Output extends Component{
         <head>
           <meta charset="utf-8">
           <title>Rxjs Playground</title>
+          <style>
+            html,body{
+              color : white;
+            }
+          </style>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.3.0/Rx.min.js" charset="utf-8"></script>
 
         </head>

@@ -35,6 +35,9 @@ module.exports = {
   ],
   externals: {
     codemirror: 'CodeMirror'
+  },
+  devServer : {
+    contentBase  : path.resolve(__dirname, "src"),
   }
 
 };

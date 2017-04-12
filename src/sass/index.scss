@@ -30,16 +30,27 @@ html,body{
 
 #main {
   flex : 1;
+  padding : 0 20px;
 }
 
 #header{
   background : #B7178C;
   overflow: hidden;
   color : white;
-  padding: 8px 16px;
+  padding: 16px;
+  display: flex;
+  align-items: flex-end;
   h1 {
-    font-size: 1em;
-    font-weight: normal;
+    font-size: 1.5em;
+    margin : 0;
+    flex : 1;
+  }
+  p{
+    margin : 0;
+
+  }
+  a {
+    color : inherit;
   }
 }
 
@@ -64,6 +75,7 @@ html,body{
   }
   #output iframe{
     border : none;
+    color : white;
   }
   #console ul{
     list-style: none;

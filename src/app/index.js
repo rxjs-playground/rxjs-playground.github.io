@@ -22,7 +22,6 @@ export default class App extends Component{
       <Header />,
       <Router>
         <div id="row">
-          <Sidebar/>
           <div id="main">
                 <Switch>
                   <Route exact path="/" component={Playground}/>
