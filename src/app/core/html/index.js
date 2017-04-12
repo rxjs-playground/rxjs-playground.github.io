@@ -22,6 +22,8 @@ export default class HTML extends Component{
       autoCloseBrackets: true,
       historyEventDelay: 2000,
     });
+
+
     Observable.fromEvent(input,"change").debounceTime(1000)
           .map(e=>input.getValue())
           .subscribe(html => this.context.setHtml(html));

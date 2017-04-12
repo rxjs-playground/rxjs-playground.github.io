@@ -25,6 +25,8 @@ export default class Editor extends Component{
         },
         autoCloseBrackets: true,
     });
+  
+
     this.subscription = Observable.fromEvent(input,"change").debounceTime(1000)
           .map(e=>input.getValue())
           .subscribe(source => this.context.setSource(source));
@@ -35,7 +37,7 @@ export default class Editor extends Component{
   shouldComponentUpdate(){
     return false;
   }
-  
+
   render(){
     console.log("render");
     return <div id="editor">

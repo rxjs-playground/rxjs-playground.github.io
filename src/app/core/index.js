@@ -5,13 +5,14 @@ import ConsoleOutput from './consoleOutput';
 import Output, {CONSOLE_EVENT} from './output';
 import HTMLPane from './html';
 import queryString from 'query-string';
+import Rx from 'rxjs';
 import {Observable} from 'rxjs/Observable';
-
+import './codemirrorhelper';
 
 function compile(source) {
 
     let transformed;
-    const code = ` \n${source}`;
+    const code = `\n${source}`;
     try {
         transformed = transform(code, {
             filename: 'rxjs',
