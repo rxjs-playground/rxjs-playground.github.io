@@ -5,7 +5,8 @@ import Codemirror from 'codemirror';
 export default class HTML extends Component{
   static contextTypes = {
     output : PropTypes.string.isRequired,
-    setHtml : PropTypes.func.isRequired
+    setHtml : PropTypes.func.isRequired,
+    html : PropTypes.string.isRequired
   }
   componentDidMount(){
     const input = Codemirror.fromTextArea(this.textarea, {
@@ -33,7 +34,7 @@ export default class HTML extends Component{
 
     return <div id="html">
       <div id="htmleditor-container">
-        <textarea id="htmlinput" onKeyDown={this.handleKeydown} ref={n => this.textarea = n}>
+        <textarea id="htmlinput" defaultValue={this.context.html}  onKeyDown={this.handleKeydown} ref={n => this.textarea = n}>
         </textarea>
       </div>
     </div>

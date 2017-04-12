@@ -46,20 +46,13 @@ export default class Output extends Component{
     const exp = (
       `
       var console = {
-          log: function(m){
-              var message;
-              try{
-                message = m.toString();
-              }catch(err){
-                message = err.toString();
-              }
+          log: function(message){
               var event = new CustomEvent("${CONSOLE_EVENT}", { detail : {
                 message : message
               }});
               parent.window.document.dispatchEvent(event)
           }
       };
-      console.log(Rx);
       ${this.context.output}
       `);
     frameWindow.eval(exp)

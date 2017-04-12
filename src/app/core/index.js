@@ -4,6 +4,7 @@ import Editor from './editor';
 import ConsoleOutput from './consoleOutput';
 import Output, {CONSOLE_EVENT} from './output';
 import HTMLPane from './html';
+import queryString from 'query-string';
 
 
 
@@ -31,6 +32,9 @@ function compile(source) {
 };
 
 export default class Playground extends Component{
+  static contextTypes = {
+    router : PropTypes.any
+  }
   static childContextTypes = {
     setSource : PropTypes.func,
     setHtml : PropTypes.func,
@@ -41,10 +45,11 @@ export default class Playground extends Component{
 
   constructor(props){
     super(props);
+    const {html,js} = queryString.parse(props.location.search);
     this.state = {
-      source : "",
-      output : "",
-      html : "",
+      source : js || "",
+      output : compile(js),
+      html : html || "",
     }
   }
 
@@ -60,12 +65,31 @@ export default class Playground extends Component{
 
   setSource = source => {
     const output  = compile(source);
-    return this.setState({source , output})
+    return this.setState(function(){
+      return {source , output}
+    }, function(){
+      this.transition()
+    });
   };
-  setHtml = html => this.setState({html})
+  setHtml = html => {
+    this.setState(function(){
+      return {
+        html
+      }
+    }, function(){
+      this.transition();
+    });
+  }
+
+  transition = () =>{
+    this.context.router.history.push(`/?${queryString.stringify({
+      js : this.state.source,
+      html :this.state.html
+    })}`)
+  }
 
   clearConsole = () =>  this.consoleRef.clear();
-  
+
   run = () => {
     this.clearConsole();
     this.outputRef.run();

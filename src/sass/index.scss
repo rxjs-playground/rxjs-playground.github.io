@@ -55,6 +55,9 @@ html,body{
   #output iframe{
     border : none;
   }
+  #console ul{
+    list-style: none;
+  }
   &--headers{
     display : flex;
     > * {

@@ -5,7 +5,8 @@ import {Observable} from 'rxjs/Observable';
 export default class Editor extends Component{
 
   static contextTypes = {
-    setSource : PropTypes.func.isRequired
+    setSource : PropTypes.func.isRequired,
+    source : PropTypes.string.isRequired
   }
 
   componentDidMount(){
@@ -21,7 +22,6 @@ export default class Editor extends Component{
         extraKeys: {
             "Tab": "autocomplete"
         },
-        autofocus: true,
         autoCloseBrackets: true,
         historyEventDelay: 2000,
     });
@@ -35,7 +35,7 @@ export default class Editor extends Component{
   render(){
     return <div id="editor">
       <div>
-      <textarea id="editorinput" onKeyDown={this.handleKeydown} ref={n => this.textarea = n}>
+      <textarea id="editorinput" onKeyDown={this.handleKeydown} defaultValue={this.context.source} ref={n => this.textarea = n}>
       </textarea></div>
     </div>
   }

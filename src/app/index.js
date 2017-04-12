@@ -26,7 +26,6 @@ export default class App extends Component{
           <div id="main">
                 <Switch>
                   <Route exact path="/" component={Playground}/>
-                  <Route exact path="/s/:code" component={Playground}/>
                   <Route component={NotFound} />
                 </Switch>
           </div>
