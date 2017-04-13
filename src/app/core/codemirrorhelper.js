@@ -82,7 +82,7 @@
     return scriptHint(editor, coffeescriptKeywords, getCoffeeScriptToken, options);
   }
   CodeMirror.registerHelper("hint", "coffeescript", coffeescriptHint);
-  
+
 
   var stringProps = ("charAt charCodeAt indexOf lastIndexOf substring substr slice trim trimLeft trimRight " +
                      "toUpperCase toLowerCase split concat match replace search").split(" ");
