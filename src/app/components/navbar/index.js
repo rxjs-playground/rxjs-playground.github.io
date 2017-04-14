@@ -1,6 +1,8 @@
 import React ,{PropTypes, Component} from 'react';
 import BeginnerTuts from '../../content/beginner';
 import AdvancedTuts from '../../content/advanced';
+import IntermediateTus from '../../content/intermediate';
+import OtherTuts from '../../content/other';
 import queryString from 'query-string';
 import {Observable} from 'rxjs/Observable';
 import shorturl from '../../utils/shorten_url';
@@ -116,6 +118,9 @@ export default class Navbar extends Component{
           </div>,
           <div className="tutorial-group">
             <h3> Intermediate </h3>
+            <ul className="tutorials">
+            {IntermediateTus.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"> {tut.title} </li> )}
+            </ul>
           </div>,
           <div className="tutorial-group">
             <h3> Advanced </h3>
@@ -125,6 +130,9 @@ export default class Navbar extends Component{
           </div>,
           <div className="tutorial-group">
             <h3> Other </h3>
+            <ul className="tutorials">
+            {OtherTuts.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"> {tut.title} </li> )}
+            </ul>
           </div>
     ]
   }
