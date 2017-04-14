@@ -90,9 +90,12 @@ html,body{
     word-break: break-all;
     overflow: hidden;
     flex : 0 0 50%;
+    display: flex;
+    flex-direction: column;
   }
   .playground-outputs{
     display : flex;
+    flex : 1;
   }
   .playground-row{
     display: flex;
@@ -102,11 +105,19 @@ html,body{
   }
   #console, #output{
     color : white;
-    width : 50%;
   }
-  #output iframe{
-    border : none;
-    color : white;
+  #output{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    > div {
+      flex : 1;
+    }
+    iframe{
+     border : none;
+     color : white;
+     height: 100%;
+   }
   }
   #console ul{
     list-style: none;

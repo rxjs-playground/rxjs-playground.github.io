@@ -17,7 +17,8 @@ export default class Console extends Component{
   }
   componentDidMount(){
     this.subscription = Observable.fromEvent(document, CONSOLE_EVENT).subscribe(e =>  {
-      this.consoleAppend(JSON.stringify(e.detail.message,null,4));
+      console.log.apply(console.log, e.detail.args);
+      this.consoleAppend(JSON.stringify(e.detail.args.join(" "),null,4));
     });
   }
   componentWillUnmount(){

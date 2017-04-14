@@ -74,20 +74,29 @@ html, body {
     width: 50%;
     word-break: break-all;
     overflow: hidden;
-    flex: 0 0 50%; }
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column; }
   #playground .playground-outputs {
-    display: flex; }
+    display: flex;
+    flex: 1; }
   #playground .playground-row {
     display: flex;
     flex: 1;
     height: 100%;
     flex-direction: column; }
   #playground #console, #playground #output {
-    color: white;
-    width: 50%; }
-  #playground #output iframe {
-    border: none;
     color: white; }
+  #playground #output {
+    display: flex;
+    flex-direction: column;
+    height: 100%; }
+    #playground #output > div {
+      flex: 1; }
+    #playground #output iframe {
+      border: none;
+      color: white;
+      height: 100%; }
   #playground #console ul {
     list-style: none; }
   #playground #html, #playground #editor {

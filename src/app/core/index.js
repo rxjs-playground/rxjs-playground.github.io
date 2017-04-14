@@ -27,9 +27,9 @@ function compile(source) {
     } catch (err) {
 
         var event = new CustomEvent(CONSOLE_EVENT, { detail : {
-          message : err.message.replace(/(?=\d).*(?=\|)/g, function(a) {
+          args : [err.message.replace(/(?=\d).*(?=\|)/g, function(a) {
               return Number(a.trim()) - 1;
-          })
+          })]
         }});
         parent.window.document.dispatchEvent(event)
         return source;

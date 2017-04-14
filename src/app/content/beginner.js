@@ -18,7 +18,7 @@ Rx.Observable.fromEvent(button, "click")
 .subscribe(x => console.log("click"))`
     }
   },{
-    title : "Even numbers",
+    title : "Filtering Even numbers",
     editor : {
       html : "",
       js : `//Filter even numbers out from a list
@@ -29,7 +29,7 @@ const evenStream
 evenStream.subscribe(x => console.log(x, " is even")); `
     }
   }, {
-    title : "Even and Odd",
+    title : "Partitioning Even and Odd",
     editor : {
       html : "",
       js : `//Separate a list of numbers into odd and even

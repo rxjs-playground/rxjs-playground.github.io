@@ -1,5 +1,6 @@
 import React ,{PropTypes, Component} from 'react';
 import BeginnerTuts from '../../content/beginner';
+import AdvancedTuts from '../../content/advanced';
 import queryString from 'query-string';
 import {Observable} from 'rxjs/Observable';
 import Codemirror from 'codemirror';
@@ -116,6 +117,9 @@ export default class Navbar extends Component{
           </div>,
           <div className="tutorial-group">
             <h3> Advanced </h3>
+            <ul className="tutorials">
+            {AdvancedTuts.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"> {tut.title} </li> )}
+            </ul>
           </div>,
           <div className="tutorial-group">
             <h3> Other </h3>

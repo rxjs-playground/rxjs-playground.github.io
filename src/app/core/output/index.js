@@ -56,7 +56,7 @@ export default class Output extends Component{
       var console = {
           log: function(){
               var event = new CustomEvent("${CONSOLE_EVENT}", { detail : {
-                message : Array.from(arguments).join(" ")
+                args : Array.from(arguments)
               }});
               parent.window.document.dispatchEvent(event)
           }
@@ -68,7 +68,7 @@ export default class Output extends Component{
      }catch(err){
        document.dispatchEvent(new CustomEvent(CONSOLE_EVENT,{
          detail : {
-           message : err.toString()
+           args : [err]
          }
        }))
      }
