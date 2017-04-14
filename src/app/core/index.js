@@ -52,45 +52,48 @@ export default class Playground extends Component{
     super(props);
     const {html,js} = queryString.parse(props.location.search);
     this.state = {
-      source : js || "",
       output : compile(js),
-      html : html || "",
       show : true
     }
   }
 
+  componentWillReceiveProps(newProps){
+    const {js : nJs} = queryString.parse(newProps.location.search);
+    const {js} = queryString.parse(this.props.location.search);
+    if(js !== nJs){
+      const output = compile(nJs);
+      this.setState({output});
+    }
+  }
+
   getChildContext(){
+    const {html,js} = queryString.parse(this.props.location.search);
+
     return {
       setSource : this.setSource,
-      source : this.state.source,
+      source : js,
       output : this.state.output,
-      html : this.state.html,
+      html : html,
       setHtml : this.setHtml,
     }
   }
 
-  setSource = source => {
-    const output  = compile(source);
-    return this.setState(function(){
-      return {source , output}
-    }, function(){
-      this.transition()
-    });
+  setSource = js => {
+    const {html} = queryString.parse(this.props.location.search);
+    this.transition({
+      js,
+      html
+    })
   };
   setHtml = html => {
-    this.setState(function(){
-      return {
-        html
-      }
-    }, function(){
-      this.transition();
-    });
+    const {js} = queryString.parse(this.props.location.search);
+    this.transition({html, js});
   }
 
-  transition = () =>{
+  transition = ({html, js}) =>{
     this.context.router.history.push(`/?${queryString.stringify({
-      js : this.state.source,
-      html :this.state.html
+      html,
+      js
     })}`)
   }
 
@@ -137,5 +140,23 @@ export default class Playground extends Component{
         </div>
       </div>
     ]
+  }
+}
+
+export class Try extends Component{
+  static contextTypes = {
+    router : PropTypes.any
+  }
+  componentDidMount(){
+    setTimeout(() => {
+      const {html,js} = queryString.parse(this.props.location.search);
+      this.context.router.history.push(`/?${queryString.stringify({
+        html,
+        js
+      })}`)
+    });
+  }
+  render(){
+    return null;
   }
 }

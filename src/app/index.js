@@ -2,7 +2,7 @@ import React ,{Component} from 'react';
 import Header from './components/header';
 import Navbar from './components/navbar';
 import Sidebar from './components/sidebar';
-import Playground from './core';
+import Playground, {Try} from './core';
 import {
   HashRouter as Router,
   Switch,
@@ -18,18 +18,26 @@ function NotFound(props){
 }
 
 export default class App extends Component{
+  renderChildren(){
+    return [
+      <Header key={0} />,
+      <Navbar key={1}/>,
+      <div key={2} id="row">
+        <div id="main">
+              <Switch>
+                <Route exact path="/" component={Playground}/>
+                <Route exact path="/try" component={Try}/>
+                <Route component={NotFound} />
+              </Switch>
+        </div>
+      </div>
+    ]
+  }
   render(){
     return [
-      <Header />,
-      <Navbar/>,
       <Router>
-        <div id="row">
-          <div id="main">
-                <Switch>
-                  <Route exact path="/" component={Playground}/>
-                  <Route component={NotFound} />
-                </Switch>
-          </div>
+        <div id="app">
+          {this.renderChildren()}
         </div>
       </Router>
     ]

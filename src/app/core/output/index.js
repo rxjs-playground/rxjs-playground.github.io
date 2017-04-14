@@ -5,8 +5,8 @@ console.log(CONSOLE_EVENT);
 export default class Output extends Component{
 
   static contextTypes = {
-    output : PropTypes.string.isRequired,
-    html : PropTypes.string.isRequired
+    output : PropTypes.string,
+    html : PropTypes.string
   }
 
   componentDidMount(){

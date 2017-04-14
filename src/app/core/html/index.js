@@ -4,9 +4,9 @@ import Codemirror from 'codemirror';
 
 export default class HTML extends Component{
   static contextTypes = {
-    output : PropTypes.string.isRequired,
+    output : PropTypes.string,
     setHtml : PropTypes.func.isRequired,
-    html : PropTypes.string.isRequired
+    html : PropTypes.string
   }
   componentDidMount(){
     const input = Codemirror.fromTextArea(this.textarea, {
@@ -24,7 +24,7 @@ export default class HTML extends Component{
     });
 
 
-    Observable.fromEvent(input,"change").debounceTime(1000)
+    Observable.fromEvent(input,"change").debounceTime(500)
           .map(e=>input.getValue())
           .subscribe(html => this.context.setHtml(html));
   }

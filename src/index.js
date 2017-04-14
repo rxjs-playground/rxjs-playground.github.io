@@ -8,4 +8,4 @@ function Main(){
   return <App/>;
 }
 
-render(<Main/> , document.getElementById("app"));
+render(<Main/> , document.getElementById("reactapp"));

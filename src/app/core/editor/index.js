@@ -6,7 +6,7 @@ export default class Editor extends Component{
 
   static contextTypes = {
     setSource : PropTypes.func.isRequired,
-    source : PropTypes.string.isRequired
+    source : PropTypes.string
   }
 
   componentDidMount(){
@@ -25,9 +25,9 @@ export default class Editor extends Component{
         },
         autoCloseBrackets: true,
     });
-  
 
-    this.subscription = Observable.fromEvent(input,"change").debounceTime(1000)
+
+    this.subscription = Observable.fromEvent(input,"change").debounceTime(500)
           .map(e=>input.getValue())
           .subscribe(source => this.context.setSource(source));
   }
