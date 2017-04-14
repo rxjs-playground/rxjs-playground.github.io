@@ -18,7 +18,9 @@ export default class Output extends Component{
   }
 
   set = () => {
-    const frameDoc = this.iframe.contentWindow.document;
+    const frameWindow =  this.iframe.contentWindow,
+          frameDoc = frameWindow.document;
+    frameDoc.open();
     frameDoc.write(`
       <!DOCTYPE html>
       <html>
@@ -30,7 +32,7 @@ export default class Output extends Component{
               color : white;
             }
           </style>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.3.0/Rx.min.js" charset="utf-8"></script>
+          <script async src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.3.0/Rx.min.js" charset="utf-8"></script>
 
         </head>
         <body>
@@ -38,6 +40,7 @@ export default class Output extends Component{
         </body>
       </html>
     `);
+    frameDoc.close();
   }
 
   update = () => {
