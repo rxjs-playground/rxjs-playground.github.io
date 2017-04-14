@@ -13,7 +13,6 @@ export default [
 Rx.Observable.from(document.querySelectorAll("[data-observe]"))
 .map( k => {
   const input = document.querySelectorAll("[data-bind='"+k.getAttribute("data-observe")+"']");
-  console.log(input);
   return Rx.Observable.fromEvent(input, "input").map(e => {
     return {
     element : k,
