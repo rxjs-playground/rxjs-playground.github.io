@@ -122,10 +122,11 @@ html, body {
   border: 3px dashed #fff;
   flex: 1; }
   .tutorial-detail > div {
-    flex: 4;
-    display: flex; }
+    flex: 8;
+    display: flex;
+    width: 80%; }
     .tutorial-detail > div:first-child {
-      flex: 1; }
+      flex: 2; }
   .tutorial-detail .tutorial-js, .tutorial-detail .tutorial-html {
     flex: 1;
     width: 50%; }
