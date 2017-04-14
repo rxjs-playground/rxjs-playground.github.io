@@ -3,6 +3,7 @@ import BeginnerTuts from '../../content/beginner';
 import AdvancedTuts from '../../content/advanced';
 import queryString from 'query-string';
 import {Observable} from 'rxjs/Observable';
+import shorturl from '../../utils/shorten_url';
 import Codemirror from 'codemirror';
 
 class DetailTutorial extends Component {
@@ -52,7 +53,8 @@ class DetailTutorial extends Component {
 
 const initialState = {
   active : false,
-  detail_tutorial : null
+  detail_tutorial : null,
+  short_url : null
 }
 
 export default class Navbar extends Component{
@@ -135,12 +137,24 @@ export default class Navbar extends Component{
       </div>
     }
   }
+  getShareButton = () => {
+    shorturl(window.location.href).then(result =>{
+      	this.setState(()=>{
+          return {
+            short_url : result
+          }
+        });
+    });
+
+  }
   render(){
     return [
       <header id="navbar" className={this.state.active ? "active" : ""} ref={n => this.root = n}>
         <div>
           <button ref={n => this.exploreBtn = n}>Explore</button>
-        </div>
+          <button onClick={this.getShareButton}>Share</button>
+          {this.state.short_url ? <input defaultValue={this.state.short_url}/> : null }
+      </div>
         {this.renderChildren()}
       </header>
     ]
