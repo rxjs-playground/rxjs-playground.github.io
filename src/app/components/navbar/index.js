@@ -1,7 +1,7 @@
 import React ,{PropTypes, Component} from 'react';
 import BeginnerTuts from '../../content/beginner';
 import queryString from 'query-string';
-
+import {Observable} from 'rxjs/Observable';
 
 class DetailTutorial extends Component {
   render(){
@@ -35,13 +35,25 @@ export default class Navbar extends Component{
   state = {
     ...initialState
   }
-  toggleActive = () => this.setState((state)=>{
-    return {
-      active : !this.state.active
-    }
-  })
+  componentDidMount(){
 
-  renderTut = (detail_tutorial) => {
+     const [exploreBtnClickStream, otherClick] = Observable.fromEvent(document, "click").partition(e => e.target === this.exploreBtn);
+     exploreBtnClickStream.subscribe(e => this.setState((state) => {
+       return {
+          active : !state.active
+       };
+     }));
+     otherClick.filter(e => this.state.active && !this.root.contains(e.target))
+      .subscribe(e => this.setState({active : false})) ;
+
+  }
+  componentWillUnmount(){
+    this.exploreSubscription.unsubscribe();
+  }
+  setActive = active => this.setState({ active})
+
+  renderTut = (detail_tutorial, e) => {
+    e.nativeEvent.stopImmediatePropagation();
     this.setState(state=>({
       detail_tutorial
     }))
@@ -96,9 +108,9 @@ export default class Navbar extends Component{
   }
   render(){
     return [
-      <header id="navbar" className={this.state.active ? "active" : ""}>
+      <header id="navbar" className={this.state.active ? "active" : ""} ref={n => this.root = n}>
         <div>
-          <button onClick={this.toggleActive}>Explore</button>
+          <button ref={n => this.exploreBtn = n}>Explore</button>
         </div>
         {this.renderChildren()}
       </header>

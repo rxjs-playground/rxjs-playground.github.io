@@ -3,14 +3,19 @@ export default [
     title : 'Getting Started with Rx.js',
     editor : {
       html : '',
-      js : 'Rx.Observable.interval(1000).take(3).subscribe(v => console.log(v))'
+      js : `// A simple illustration to count to 3.
+Rx.Observable.interval(1000).take(3).subscribe(v => console.log(v))
+    `
     }
   },
   {
-    title : 'Timer',
+    title : 'Handling a click event',
     editor : {
-      html : '',
-      js : 'Rx.Observable.interval(1000).take(3).subscribe(v => console.log(v))'
+      html : `<button id="myButton">Yo</button>`,
+      js : `const button = document.getElementById("myButton");
+
+Rx.Observable.fromEvent(button, "click")
+.subscribe(x => console.log("click"))`
     }
   }
 ]

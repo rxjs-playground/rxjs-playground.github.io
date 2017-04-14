@@ -148,13 +148,11 @@ export class Try extends Component{
     router : PropTypes.any
   }
   componentDidMount(){
-    setTimeout(() => {
-      const {html,js} = queryString.parse(this.props.location.search);
-      this.context.router.history.push(`/?${queryString.stringify({
-        html,
-        js
-      })}`)
-    });
+    const {html,js} = queryString.parse(this.props.location.search);
+    this.context.router.history.push(`/?${queryString.stringify({
+      html,
+      js
+    })}`)
   }
   render(){
     return null;
