@@ -2,8 +2,32 @@ import React ,{PropTypes, Component} from 'react';
 import BeginnerTuts from '../../content/beginner';
 import queryString from 'query-string';
 import {Observable} from 'rxjs/Observable';
+import Codemirror from 'codemirror';
 
 class DetailTutorial extends Component {
+  componentDidMount(){
+    Codemirror.fromTextArea(this.jsNode, {
+       lineNumbers: true,
+       readOnly : true,
+       mode: {
+           name: "javascript",
+       },
+       cursorBlinkRate : 0,
+       theme : "dracula"
+    });
+
+    Codemirror.fromTextArea(this.htmlNode, {
+       lineNumbers: true,
+       readOnly : true,
+       mode: {
+           name: "htmlmixed",
+           json: true,
+           globalVars: true
+       },
+       cursorBlinkRate : 0,
+       theme : "dracula"
+    });
+  }
   render(){
     const {tutorial} = this.props;
     return <div className = "tutorial-detail">
@@ -11,13 +35,15 @@ class DetailTutorial extends Component {
         <p> {tutorial.title} </p>
         <p> {tutorial.description || ""} </p>
       </div>
-      <div className="tutorial-html">
-        <p> HTML </p>
-        <p> {tutorial.editor.html} </p>
-      </div>
-      <div className="tutorial-js">
-        <p> Javascript </p>
-        <p> {tutorial.editor.js} </p>
+      <div className="tutorial-content">
+        <div className="tutorial-html">
+          <p> HTML </p>
+          <textarea ref={n => this.htmlNode = n} defaultValue={tutorial.editor.html} />
+        </div>
+        <div className="tutorial-js">
+          <p> Javascript </p>
+          <textarea ref={n => this.jsNode = n } defaultValue={tutorial.editor.js} />
+        </div>
       </div>
     </div>
   }
@@ -36,19 +62,18 @@ export default class Navbar extends Component{
     ...initialState
   }
   componentDidMount(){
-
      const [exploreBtnClickStream, otherClick] = Observable.fromEvent(document, "click").partition(e => e.target === this.exploreBtn);
-     exploreBtnClickStream.subscribe(e => this.setState((state) => {
+     const s1 = exploreBtnClickStream.subscribe(e => this.setState((state) => {
        return {
           active : !state.active
        };
      }));
-     otherClick.filter(e => this.state.active && !this.root.contains(e.target))
+     const s2 = otherClick.filter(e => this.state.active && !this.root.contains(e.target))
       .subscribe(e => this.setState({active : false})) ;
-
+     this.subscriptions = [s1,s2];
   }
   componentWillUnmount(){
-    this.exploreSubscription.unsubscribe();
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
   setActive = active => this.setState({ active})
 

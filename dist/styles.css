@@ -112,6 +112,21 @@ html, body {
   border: 3px dashed #fff;
   flex: 1; }
   .tutorial-detail > div {
-    flex: 1; }
+    flex: 4;
+    display: flex; }
+    .tutorial-detail > div:first-child {
+      flex: 1; }
+  .tutorial-detail .tutorial-js, .tutorial-detail .tutorial-html {
+    flex: 1;
+    width: 50%; }
+  .tutorial-detail .CodeMirror {
+    height: 100%; }
+
+.tutorial-html {
+  margin-right: 5px; }
+
+.tutorial-js, .tutorial-html {
+  display: flex;
+  flex-direction: column; }
 
 /*# sourceMappingURL=styles.css.map*/
