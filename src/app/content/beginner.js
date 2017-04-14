@@ -17,5 +17,19 @@ Rx.Observable.interval(1000).take(3).subscribe(v => console.log(v))
 Rx.Observable.fromEvent(button, "click")
 .subscribe(x => console.log("click"))`
     }
+  }, {
+    title : "Even and Odd",
+    editor : {
+      html : "",
+      js : `//Separate a list of numbers into odd and even
+
+const [evenStream, oddStream]
+   = Rx.Observable.of(15,1,2,3,4).partition(num => num % 2 == 0);
+
+//subscribed first => gets values first
+oddStream.subscribe(x => console.log(x," is odd"));
+//gets values after the one above
+evenStream.subscribe(x => console.log(x, " is even")); `
+    }
   }
 ]

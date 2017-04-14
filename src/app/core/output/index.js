@@ -54,9 +54,9 @@ export default class Output extends Component{
     const exp = (
       `
       var console = {
-          log: function(message){
+          log: function(){
               var event = new CustomEvent("${CONSOLE_EVENT}", { detail : {
-                message : message
+                message : Array.from(arguments).join(" ")
               }});
               parent.window.document.dispatchEvent(event)
           }

@@ -21059,13 +21059,16 @@ var Output = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Output.__proto__ || Object.getPrototypeOf(Output)).call.apply(_ref, [this].concat(args))), _this), _this.set = function () {
-      var frameDoc = _this.iframe.contentWindow.document;
-      frameDoc.write('\n      <!DOCTYPE html>\n      <html>\n        <head>\n          <meta charset="utf-8">\n          <title>Rxjs Playground</title>\n          <style>\n            html,body{\n              color : white;\n            }\n          </style>\n          <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.3.0/Rx.min.js" charset="utf-8"></script>\n\n        </head>\n        <body>\n\n        </body>\n      </html>\n    ');
+      var frameWindow = _this.iframe.contentWindow,
+          frameDoc = frameWindow.document;
+      frameDoc.open();
+      frameDoc.write('\n      <!DOCTYPE html>\n      <html>\n        <head>\n          <meta charset="utf-8">\n          <title>Rxjs Playground</title>\n          <style>\n            html,body{\n              color : white;\n            }\n          </style>\n          <script async src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.3.0/Rx.min.js" charset="utf-8"></script>\n\n        </head>\n        <body>\n\n        </body>\n      </html>\n    ');
+      frameDoc.close();
     }, _this.update = function () {
       var frameWindow = _this.iframe.contentWindow,
           frameDoc = frameWindow.document;
       frameDoc.body.innerHTML = '\n          <div id="core">\n            ' + _this.context.html + '\n          </div>\n    ';
-      var exp = '\n      var console = {\n          log: function(message){\n              var event = new CustomEvent("' + CONSOLE_EVENT + '", { detail : {\n                message : message\n              }});\n              parent.window.document.dispatchEvent(event)\n          }\n      };\n      ' + _this.context.output + '\n      ';
+      var exp = '\n      var console = {\n          log: function(){\n              var event = new CustomEvent("' + CONSOLE_EVENT + '", { detail : {\n                message : Array.from(arguments).join(" ")\n              }});\n              parent.window.document.dispatchEvent(event)\n          }\n      };\n      ' + _this.context.output + '\n      ';
       try {
         frameWindow.eval(exp);
       } catch (err) {
@@ -23530,7 +23533,7 @@ var Header = function (_Component) {
           "p",
           null,
           " Built with ",
-          _react2.default.createElement("i", { className: "em em-blue_heart" }),
+          _react2.default.createElement("i", { className: "fa fa-heart" }),
           " by ",
           _react2.default.createElement(
             "a",
@@ -23962,6 +23965,12 @@ exports.default = [{
   editor: {
     html: '<button id="myButton">Yo</button>',
     js: 'const button = document.getElementById("myButton");\n\nRx.Observable.fromEvent(button, "click")\n.subscribe(x => console.log("click"))'
+  }
+}, {
+  title: "Even and Odd",
+  editor: {
+    html: "",
+    js: '//Separate a list of numbers into odd and even\n\nconst [evenStream, oddStream]\n   = Rx.Observable.of(15,1,2,3,4).partition(num => num % 2 == 0);\n\n//subscribed first => gets values first\noddStream.subscribe(x => console.log(x," is odd"));\n//gets values after the one above\nevenStream.subscribe(x => console.log(x, " is even")); '
   }
 }];
 
