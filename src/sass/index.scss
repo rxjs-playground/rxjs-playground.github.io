@@ -46,7 +46,7 @@ html,body{
   color : white;
   padding: 16px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
       border-bottom: 1px solid #282a36;
   h1 {
@@ -56,7 +56,7 @@ html,body{
   }
   p{
     margin : 0;
-
+    margin-left : 15px;
   }
   a {
     color : inherit;
