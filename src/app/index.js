@@ -1,5 +1,6 @@
 import React ,{Component} from 'react';
 import Header from './components/header';
+import Navbar from './components/navbar';
 import Sidebar from './components/sidebar';
 import Playground from './core';
 import {
@@ -20,6 +21,7 @@ export default class App extends Component{
   render(){
     return [
       <Header />,
+      <Navbar/>,
       <Router>
         <div id="row">
           <div id="main">
