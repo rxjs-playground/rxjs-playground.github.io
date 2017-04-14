@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --config webpack.config.prod.js",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "push" : "npm run build && git add . && git commit -m $M && git push origin master"
   },
   "dependencies": {
     "babel-core": "^6.24.1",
