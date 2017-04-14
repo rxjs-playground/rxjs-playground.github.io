@@ -53,7 +53,8 @@ export default class Playground extends Component{
     const {html,js} = queryString.parse(props.location.search);
     this.state = {
       output : compile(js),
-      show : true
+      show : true,
+      isRunning : false
     }
   }
 
@@ -100,18 +101,37 @@ export default class Playground extends Component{
   clearConsole = () =>  this.consoleRef.clear();
 
   run = () => {
-    this.clearConsole();
-    this.outputRef.run();
+    if(this.state.isRunning){
+      return;
+    }
+    this.setState((state)=>{
+      return {
+        isRunning : true
+      }
+    }, () => {
+      this.clearConsole();
+      this.outputRef.run();
+    });
   }
 
   stop = () => {
-    Observable.of(false).concat(Observable.interval(100).first().map(e=>true)).subscribe(val => {
+    return new Promise((resolve)=>{
       this.setState(()=>{
         return {
-          show : val
+          show : false,
+          isRunning : false
         }
-      })
-    });
+      });
+      setTimeout(()=>{
+        this.setState(()=>{
+          return {
+            show : true,
+
+          }
+        },() => resolve());
+
+      },100)
+    })
   }
 
   render(){

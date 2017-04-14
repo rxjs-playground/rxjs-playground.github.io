@@ -14,7 +14,7 @@ export default class Output extends Component{
   }
 
   run(){
-    this.update();
+    return this.update();
   }
 
   set = () => {

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "start": "webpack-dev-server",
-    "push": "npm run build && git add . && git commit -m $M && git push origin master"
+    "prod": "bash bash.sh"
   },
   "dependencies": {
     "babel-core": "^6.24.1",
