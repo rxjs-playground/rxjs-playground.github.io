@@ -38,7 +38,11 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin("styles.css"),
-    new UglifyJSPlugin()
+    new UglifyJSPlugin({
+      compress: {
+        drop_console : true
+      }
+    })
   ],
   externals: {
     codemirror: 'CodeMirror'
