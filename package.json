@@ -25,6 +25,7 @@
     "shorturl": "^0.0.3"
   },
   "devDependencies": {
+    "autoprefixer": "^6.7.7",
     "babel-cli": "^6.24.1",
     "babel-loader": "^6.4.1",
     "babel-preset-react": "^6.24.1",
@@ -33,6 +34,8 @@
     "json-loader": "^0.5.4",
     "node-sass": "^4.5.2",
     "postcss-loader": "^1.3.3",
+    "postcss-smart-import": "^0.6.11",
+    "precss": "^1.4.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
     "uglifyjs-webpack-plugin": "^0.4.2",

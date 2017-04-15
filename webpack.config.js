@@ -20,7 +20,7 @@ module.exports = {
       loaders: ['babel-loader']
     },{
       test: /\.s?css$/,
-      loaders: ['style-loader', 'css-loader', 'sass-loader']
+      loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
     },{
           loader: 'json-loader',
           test: /\.json$/
