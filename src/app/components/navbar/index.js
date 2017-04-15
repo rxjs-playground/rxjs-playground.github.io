@@ -113,25 +113,25 @@ export default class Navbar extends Component{
           <div className="tutorial-group">
             <h3> Beginner </h3>
             <ul className="tutorials">
-              {BeginnerTuts.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"> {tut.title} </li> )}
+              {BeginnerTuts.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"> <span>{tut.title} </span></li> )}
             </ul>
           </div>,
           <div className="tutorial-group">
             <h3> Intermediate </h3>
             <ul className="tutorials">
-            {IntermediateTus.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"> {tut.title} </li> )}
+            {IntermediateTus.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"><span> {tut.title} </span></li> )}
             </ul>
           </div>,
           <div className="tutorial-group">
             <h3> Advanced </h3>
             <ul className="tutorials">
-            {AdvancedTuts.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"> {tut.title} </li> )}
+              {AdvancedTuts.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"><span> {tut.title} </span></li> )}
             </ul>
           </div>,
           <div className="tutorial-group">
-            <h3> Other </h3>
+            <h3 id="misc-examples-header"> Misc </h3>
             <ul className="tutorials">
-            {OtherTuts.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"> {tut.title} </li> )}
+            {OtherTuts.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"><span> {tut.title} </span></li> )}
             </ul>
           </div>
     ]

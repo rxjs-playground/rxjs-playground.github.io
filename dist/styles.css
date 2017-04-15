@@ -254,13 +254,26 @@ button {
 .tutorial-groups .tutorials .tutorial {
       padding: 8px 16px 8px 0; }
 
+.tutorial-groups .tutorials .tutorial span {
+        border-bottom: 1px dashed #aaa;
+        padding-bottom: 4px;
+        clear: both;
+        cursor: pointer; }
+
+.tutorial-meta p {
+  font-size: 1.4em;
+  font-weight: bold;
+  /* text-transform: uppercase; */
+  text-decoration: underline;
+  margin: 8px 0; }
+
 .tutorial-detail {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  padding: 16px;
-  border: 3px dashed #fff;
+  padding: 8px 16px;
+  box-shadow: 0 1px 3px 3px dodgerblue;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -318,5 +331,10 @@ button {
 #stop-button {
   background: orangered;
   border: none; }
+
+#misc-examples-header {
+  color: yellow;
+  text-transform: uppercase;
+  text-decoration: underline; }
 
 /*# sourceMappingURL=styles.css.map*/
