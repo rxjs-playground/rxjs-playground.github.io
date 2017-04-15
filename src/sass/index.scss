@@ -118,10 +118,8 @@ button{
     flex : 1;
   }
   .playground-row{
-    display: flex;
-    flex : 1;
     height : 100%;
-    flex-direction: row;
+    width : 100%;
   }
   #console, #output{
     color : white;

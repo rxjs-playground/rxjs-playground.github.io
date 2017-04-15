@@ -166,17 +166,8 @@ button {
             flex: 1; }
 
 #playground .playground-row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
     height: 100%;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row; }
+    width: 100%; }
 
 #playground #console, #playground #output {
     color: white; }
