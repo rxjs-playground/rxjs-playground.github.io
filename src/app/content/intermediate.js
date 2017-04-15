@@ -56,5 +56,16 @@ Rx.Observable.fromEvent(document, "click")
       .subscribe(console.log)
 `
     }
+  },{
+    title : "Subjects",
+    editor : {
+      js : `const store = new Rx.Subject();
+
+  store.subscribe(v => console.log(v));
+
+  store.next(1)
+  store.next(2)
+  store.next(3)`
+    }
   }
 ]

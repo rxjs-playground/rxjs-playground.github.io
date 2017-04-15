@@ -9,6 +9,27 @@ Rx.Observable.interval(1000).take(3).subscribe(v => console.log(v))
     }
   },
   {
+    title : "Observable.create",
+    editor : {
+      js : `// Observable.create
+
+const base = Rx.Observable.create(function(observer){
+  observer.next(1);
+  observer.next(2);
+  observer.next(42);
+  observer.complete();
+})
+
+
+base
+    .subscribe(
+       v => console.log(v),
+      err => console.log(err),
+      done => console.log("completed")
+    )`
+    }
+  },
+  {
     title : 'Handling a click event',
     editor : {
       html : `<button id="myButton">Click me</button>`,
