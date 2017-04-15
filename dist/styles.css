@@ -23,7 +23,8 @@ html, body {
 #row {
   display: flex;
   flex-direction: column;
-  flex: 1; }
+  flex: 1;
+  transition: all 1s ease; }
 
 #sidebar {
   flex: 0 0 200px; }
@@ -66,6 +67,8 @@ html, body {
     flex-direction: column; }
     #navbar.active > * {
       margin: 5px; }
+    #navbar.active + #row {
+      flex: 0; }
   #navbar > .go-back {
     margin-top: 1.7em !important; }
 
@@ -120,13 +123,11 @@ html, body {
   width: 100%;
   padding: 16px;
   border: 3px dashed #fff;
-  flex: 1; }
-  .tutorial-detail > div {
-    flex: 8;
-    display: flex;
-    width: 80%; }
-    .tutorial-detail > div:first-child {
-      flex: 2; }
+  flex: 1;
+  flex-direction: column; }
+  .tutorial-detail .tutorial-content {
+    flex: 1;
+    display: flex; }
   .tutorial-detail .tutorial-js, .tutorial-detail .tutorial-html {
     flex: 1;
     width: 50%; }

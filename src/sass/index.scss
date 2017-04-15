@@ -27,6 +27,7 @@ html,body{
   display: flex;
   flex-direction: column;
   flex : 1;
+  transition: all 1s ease;
 }
 
 #sidebar{
@@ -76,6 +77,9 @@ html,body{
     flex-direction: column;
     > * {
       margin : 5px;
+    }
+    + #row{
+      flex : 0;
     }
   }
   > .go-back{
@@ -151,13 +155,10 @@ html,body{
   padding: 16px;
   border: 3px dashed #fff;
   flex: 1;
-  > div {
-    flex : 8;
+  flex-direction: column;
+  .tutorial-content{
+    flex : 1;
     display: flex;
-    width : 80%;
-    &:first-child{
-      flex : 2
-    }
   }
   .tutorial-js, .tutorial-html{
     flex : 1;

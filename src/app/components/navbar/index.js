@@ -36,7 +36,7 @@ class DetailTutorial extends Component {
     const {tutorial} = this.props;
     return <div className = "tutorial-detail">
       <div className="tutorial-meta">
-        <p> {tutorial.title} </p>
+        <p> {tutorial.title} {this.props.tryIt}</p>
         <p> {tutorial.description || ""} </p>
       </div>
       <div className="tutorial-content">
@@ -70,7 +70,8 @@ export default class Navbar extends Component{
      const [exploreBtnClickStream, otherClick] = Observable.fromEvent(document, "click").partition(e => e.target === this.exploreBtn);
      const s1 = exploreBtnClickStream.subscribe(e => this.setState((state) => {
        return {
-          active : !state.active
+          active : !state.active,
+          detail_tutorial : !state.active ? null : state.detail_tutorial
        };
      }));
      const s2 = otherClick.filter(e => this.state.active && !this.root.contains(e.target))
@@ -91,6 +92,7 @@ export default class Navbar extends Component{
 
   viewTutorial = () => {
     const {detail_tutorial : {editor : {js,html}}} = this.state;
+    this.setState({active : false});
     this.context.router.history.push(`/try?${queryString.stringify({
       js  ,
       html
@@ -101,10 +103,8 @@ export default class Navbar extends Component{
     const {detail_tutorial} = this.state;
     return [
       <div className="go-back"><button onClick={this.renderTut.bind(null,null)}> Go back </button></div>,
-      <DetailTutorial tutorial={detail_tutorial} />,
-      <div className="try-this-tutorial">
-        <button onClick={this.viewTutorial}>Try it</button>
-      </div>
+      <DetailTutorial tutorial={detail_tutorial} tryIt={ <button onClick={this.viewTutorial}>Try it</button>} />,
+
     ]
   }
 
