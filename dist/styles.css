@@ -139,7 +139,8 @@ button {
 #playground {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  height: 100%; }
 
 #playground .playground-column {
     width: 50%;
