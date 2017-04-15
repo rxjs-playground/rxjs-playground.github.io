@@ -10,6 +10,18 @@ html, body {
   min-width: 800px;
   overflow-x: auto; }
 
+button {
+  padding: 8px 12px;
+  background: transparent;
+  outline: none;
+  color: white;
+  border: none;
+  border-bottom: 1px solid white;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-right: 5px; }
+
 * {
   box-sizing: border-box; }
 
@@ -57,8 +69,8 @@ html, body {
 #navbar {
   background: #44475a;
   padding: 8px 16px;
-  flex: 0 0 35px;
-  height: 35px;
+  flex: 0 0 47px;
+  height: 47px;
   overflow: hidden;
   transition: flex 500ms ease; }
   #navbar.active {
@@ -71,6 +83,8 @@ html, body {
       flex: 0; }
   #navbar > .go-back {
     margin-top: 1.7em !important; }
+  #navbar > div > button {
+    border: 1px solid white; }
 
 #playground {
   display: flex; }
@@ -88,7 +102,7 @@ html, body {
     display: flex;
     flex: 1;
     height: 100%;
-    flex-direction: column; }
+    flex-direction: row; }
   #playground #console, #playground #output {
     color: white; }
   #playground #output {
@@ -104,8 +118,27 @@ html, body {
   #playground #console ul {
     list-style: none; }
   #playground #html, #playground #editor {
-    height: 50%;
-    overflow: hidden; }
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1; }
+    #playground #html > div, #playground #editor > div {
+      overflow: auto; }
+    #playground #html .CodeMirror, #playground #editor .CodeMirror {
+      height: auto; }
+
+.editor-tab button {
+  padding: 8px 12px;
+  background: transparent;
+  outline: none;
+  color: white;
+  border: none;
+  border-bottom: 1px solid white;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer; }
+  .editor-tab button:not(.active) {
+    opacity: 0.3; }
 
 .tutorial-groups {
   display: flex; }
@@ -140,5 +173,26 @@ html, body {
 .tutorial-js, .tutorial-html {
   display: flex;
   flex-direction: column; }
+
+.try-button {
+  background: dodgerblue;
+  font-size: 1em;
+  color: white;
+  border: 2px solid white;
+  margin-left: 12px;
+  cursor: pointer;
+  padding: 12px 24px; }
+
+#run-button {
+  background: dodgerblue;
+  border: none; }
+
+#clear-button {
+  background: sandybrown;
+  border: none; }
+
+#stop-button {
+  background: orangered;
+  border: none; }
 
 /*# sourceMappingURL=styles.css.map*/

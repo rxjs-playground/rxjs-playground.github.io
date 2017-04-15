@@ -54,6 +54,7 @@ export default class Playground extends Component{
     this.state = {
       output : compile(js),
       show : true,
+      tab : 0 ,
       isRunning : false
     }
   }
@@ -134,21 +135,29 @@ export default class Playground extends Component{
     })
   }
 
+  toggleSource = () => {
+    this.setState(({tab}) => {
+      return {
+         tab : Number(!Number(tab))
+      }
+    });
+  }
+
   render(){
-    const {show} = this.state;
+    const {show, tab} = this.state;
     if(!show){
       return null;
     }
     return [
       <div id="playground">
         <div className="playground-column">
+          <p className="editor-tab"> <button onClick={this.toggleSource} className={this.state.tab === 0 ? "active" : ""}>main.js</button> <button  className={this.state.tab === 1 ? "active" : ""} onClick={this.toggleSource}>index.html</button> </p>
           <div className="playground-row">
-            <Editor/>
-            <HTMLPane/>
-            </div>
+            {tab == 0 ? <Editor/>  : <HTMLPane/>}
+          </div>
         </div>
         <div className="playground-column">
-          <p><button onClick={this.run}>Run</button> <button onClick={this.clearConsole}>Clear</button> <button onClick={this.stop}>Stop</button></p>
+          <p><button id="run-button" onClick={this.run}>Run</button> <button id="clear-button" onClick={this.clearConsole}>Clear</button> <button id="stop-button" onClick={this.stop}>Stop</button></p>
           <div className="playground-outputs">
             <div className="playground-column">
               <ConsoleOutput ref={n => this.consoleRef = n}/>

@@ -102,8 +102,8 @@ export default class Navbar extends Component{
   renderDetailTutorial(){
     const {detail_tutorial} = this.state;
     return [
-      <div className="go-back"><button onClick={this.renderTut.bind(null,null)}> Go back </button></div>,
-      <DetailTutorial tutorial={detail_tutorial} tryIt={ <button onClick={this.viewTutorial}>Try it</button>} />,
+      <div className="go-back"><button onClick={this.renderTut.bind(null,null)}> &lt;&lt; Go back </button></div>,
+      <DetailTutorial tutorial={detail_tutorial} tryIt={ <button className="try-button" onClick={this.viewTutorial}>Try it</button>} />,
 
     ]
   }
