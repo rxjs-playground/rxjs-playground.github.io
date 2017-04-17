@@ -2,6 +2,7 @@ import React ,{PropTypes, Component} from 'react';
 import BeginnerTuts from '../../content/beginner';
 import AdvancedTuts from '../../content/advanced';
 import IntermediateTus from '../../content/intermediate';
+import OperatorTuts from '../../content/operators'
 import OtherTuts from '../../content/other';
 import queryString from 'query-string';
 import {Observable} from 'rxjs/Observable';
@@ -111,25 +112,31 @@ export default class Navbar extends Component{
   renderTutorials(){
     return [
           <div className="tutorial-group">
-            <h3> Beginner </h3>
+            <h3> I </h3>
             <ul className="tutorials">
               {BeginnerTuts.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"> <span>{tut.title} </span></li> )}
             </ul>
           </div>,
           <div className="tutorial-group">
-            <h3> Intermediate </h3>
+            <h3> II </h3>
+            <ul className="tutorials">
+              {OperatorTuts.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"> <span>{tut.title} </span></li> )}
+            </ul>
+          </div>,
+          <div className="tutorial-group">
+            <h3> III </h3>
             <ul className="tutorials">
             {IntermediateTus.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"><span> {tut.title} </span></li> )}
             </ul>
           </div>,
           <div className="tutorial-group">
-            <h3> Advanced </h3>
+            <h3> IV </h3>
             <ul className="tutorials">
               {AdvancedTuts.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"><span> {tut.title} </span></li> )}
             </ul>
           </div>,
           <div className="tutorial-group">
-            <h3 id="misc-examples-header"> Misc </h3>
+            <h3 id="misc-examples-header"> Fun exercises </h3>
             <ul className="tutorials">
             {OtherTuts.map((tut, index) => <li key={index} onClick={this.renderTut.bind(null, tut)} className="tutorial"><span> {tut.title} </span></li> )}
             </ul>
