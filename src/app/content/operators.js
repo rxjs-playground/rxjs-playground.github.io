@@ -103,7 +103,7 @@ Rx.Observable.of(1,2,3,4,5,6,7).filter(x => x % 2 === 1).filter(x => x > 3).subs
 `
   }
 }, {
-  title : `partition`,
+  title : `.partition()`,
   editor : {
     js : `
 // partition operators helps to filter a stream of values using a predicate function
