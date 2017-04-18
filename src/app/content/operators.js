@@ -121,5 +121,30 @@ lessThan3.subscribe(x => console.log(x));
 
 `
   }
+},{
+  title : '.fromPromise()',
+  editor : {
+    js : `
+//Allows conversion from Promise to Observable
+const p = new Promise(resolve => {
+  setTimeout(() => resolve("done"),1000)
+})
+
+Rx.Observable.fromPromise(p).subscribe(val => console.log(val))
+    `
+  }
+},{
+  title : `concat`,
+  editor : {
+    js : `
+//Concat plays the source observable first
+// after the source completes, it plays the next
+// observable which is the argument
+const o1 = Rx.Observable.interval(300).take(3);
+const o2 = Rx.Observable.interval(1000).take(5);
+
+o1.concat(o2).subscribe(console.log)
+`
+  }
 }
 ]
