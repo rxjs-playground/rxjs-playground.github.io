@@ -134,7 +134,7 @@ Rx.Observable.fromPromise(p).subscribe(val => console.log(val))
     `
   }
 },{
-  title : `concat`,
+  title : `.concat()`,
   editor : {
     js : `
 //Concat plays the source observable first
@@ -144,6 +144,20 @@ const o1 = Rx.Observable.interval(300).take(3);
 const o2 = Rx.Observable.interval(1000).take(5);
 
 o1.concat(o2).subscribe(console.log)
+`
+  }
+}, {
+  title : `.concatAll()`,
+  editor : {
+    js : `
+// Concat All concats all inner observables in order
+Rx.Observable.interval(1000)
+.take(5)
+.map(n => Rx.Observable.interval(1000)
+     .startWith("start")
+     .take(n + 1)
+ )
+.concatAll().subscribe(x => console.log(x))
 `
   }
 }
