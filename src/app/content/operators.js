@@ -167,7 +167,7 @@ Rx.Observable.interval(1000)
     // Zip computes values of observables in parallel
     // and emits them together
 
-    const range = Rx.Observable.range(17, 3)
+    const range = Rx.Observable.range(17, 30)
 
     const click = Rx.Observable.fromEvent(document,"click")
     .map(e => "click");
