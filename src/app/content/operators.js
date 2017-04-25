@@ -160,5 +160,29 @@ Rx.Observable.interval(1000)
 .concatAll().subscribe(x => console.log(x))
 `
   }
+},{
+  title : `.zip()`,
+  editor : {
+    js : `
+    // Zip computes values of observables in parallel
+    // and emits them together
+
+    const range = Rx.Observable.range(17, 3)
+
+    const click = Rx.Observable.fromEvent(document,"click")
+    .map(e => "click");
+
+    const initiate = Rx.Observable.interval(1000)
+    .map(() => "timer")
+    .merge(click)
+
+    Rx.Observable
+    .zip(range,initiate,(num, event) => num + " --- " + event)
+    .subscribe(console.log,
+               console.log.bind(null, "error") ,
+               console.log.bind(null, "complete"));
+
+    `
+  }
 }
 ]
