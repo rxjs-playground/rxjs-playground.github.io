@@ -10,7 +10,7 @@
 
 
 
-Explore simple use cases for Rx and play around with them. 
+Explore use cases for Rx and play around with them. 
 
 License 
 **MIT**
